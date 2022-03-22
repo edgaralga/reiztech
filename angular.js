@@ -10,8 +10,6 @@ cntryApp.controller('countries', function($scope, $http){
    $scope.orderByArea    = 'area';
    $scope.orderByRegion  = 'region';
    $scope.reverseSort    = false;
-   $scope.currentPage = 1;
-   $scope.pageSize = 10;
    
 });
 
