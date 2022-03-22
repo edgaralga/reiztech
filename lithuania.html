@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="cntryApp">
+<head>
+   <link rel="stylesheet" href="styles.css"> 
+  
+
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+   <script src="angular.js"></script>
+   <script src="dirPagination.js"></script>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset="utf-8">
+</head>
+<body>
+  
+   <div class="container">
+   <div ng-controller="countries">
+      <div class="countries-box">
+         <select class="text" ng-model="search.region">
+            <option value="">Region filter</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">Americas</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+         </select>
+         <a href="index.html"><button class="LT">Show all countries</button></a> 
+            
+            <form class="search cf">
+            <input type="text" placeholder="Filter by country name..." ng-model="search.name">
+            <br/><br/>
+         </form>
+
+         <br/><br/>
+      </div>
+         
+      <div class="countries-box">
+         <table class="table" id="tableid">
+            
+         <thead>
+            <tr>
+              
+              <th class="col-sort">
+                 Countries<button class="button-1" role="button" ng-click="orderByField='name'; reverseSort = !reverseSort" ></button></th>
+              <th class="col-sort">
+                 Region<button class="button-1" role="button" ng-click="orderByField='region'; reverseSort = !reverseSort"></button></th>
+              <th class="col-sort">
+                 Area<button class="button-1" role="button" ng-click="orderByField='area'; reverseSort = !reverseSort"></button></th>
+              <th class="col">ISO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class ="filterArea" ng-repeat="country in countries | orderBy:orderByField:reverseSort | filter:search | filter:applyfilter" ng-if="country.area < 65300">
+               
+
+               <td>{{ country.name }}</td>
+               <td>{{ country.region }}</td>
+               <td>{{ country.area }}</td>
+               <td>{{ country.alpha2Code }}</td>
+            </tr>
+         </tbody>  
+
+      </table>  
+      
+     
+     </div>
+    </div>
+    
+</div>
+</body>
+<dir-pagination-controls></dir-pagination-controls>
+</html>
+
